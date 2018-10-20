@@ -1,17 +1,16 @@
 package com.example.carlo.marvelapplication.view.ui.home
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.LinearLayout
 import com.example.carlo.marvelapplication.R
-import com.example.carlo.marvelapplication.databinding.CharactersFragmentBinding
-import com.example.carlo.marvelapplication.extension.inflate
+import com.example.carlo.marvelapplication.utils.inflate
+import com.example.carlo.marvelapplication.service.model.Character
 import com.example.carlo.marvelapplication.view.adapter.CharactersAdapter
 import kotlinx.android.synthetic.main.characters_fragment.*
 
@@ -32,7 +31,7 @@ class CharactersFragment : Fragment() {
         characters_list
     }
 
-    private lateinit var viewAdapter: Adapter
+    private lateinit var charactersAdapter: CharactersAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflates layout for the fragment using extension
@@ -41,6 +40,11 @@ class CharactersFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val viewModel = ViewModelProviders.of(this).get(CharactersViewModel::class.java)
+        viewModel.getCharacters().observe(this, Observer<List<Character>> { characters ->
+            animals.add()
+        })
 
         addAnimals()
 
@@ -57,7 +61,10 @@ class CharactersFragment : Fragment() {
          */
         charactersList.layoutManager = LinearLayoutManager(context)
 
-        viewAdapter = CharactersAdapter
+        charactersAdapter = CharactersAdapter(animals)
+
+        charactersList.adapter = charactersAdapter
+
     }
 
     // Adds animals to the empty animals ArrayList

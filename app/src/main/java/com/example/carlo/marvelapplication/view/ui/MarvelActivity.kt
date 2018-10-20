@@ -4,11 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.widget.Toast
 import com.example.carlo.marvelapplication.R
-import com.example.carlo.marvelapplication.extension.addFragmentTo
 import com.example.carlo.marvelapplication.view.ui.home.CharactersFragment
-import com.example.carlo.marvelapplication.view.ui.home.CharactersViewModel
 import kotlinx.android.synthetic.main.character_view.*
 
 class MarvelActivity : AppCompatActivity() {

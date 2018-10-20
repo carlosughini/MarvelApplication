@@ -1,4 +1,4 @@
-package com.example.carlo.marvelapplication.extension
+package com.example.carlo.marvelapplication.utils
 
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
